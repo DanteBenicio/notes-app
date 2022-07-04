@@ -7,3 +7,12 @@
 
   border-radius: $border-value;
 }
+
+@mixin flex-space-between($align-items-value: false) {
+  display: flex;
+  justify-content: space-between;
+
+  @if $align-items-value {
+    align-items: $align-items-value;
+  }
+}
