@@ -1,0 +1,215 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bg-color: #88ABFF;
+  --text-primary: #000000;
+  --text-secondary: #575757;
+  --br: 0.4rem;
+}
+
+html, body {
+  max-width: 100vw;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  min-height: 100%;
+  padding: 1.5rem;
+}
+
+.container {
+  display: flex;
+  gap: 1rem;
+}
+
+.add_note {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  max-width: 280px;
+  min-height: 250px;
+  width: 100%;
+  background-color: #FFF;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+.add_note > .img_wrapper {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  border: 2px dashed var(--bg-color);
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+.add_note > .img_wrapper > img {
+  width: 30px;
+}
+.add_note > span {
+  font-size: clamp(0.8rem, 5vw, 1.1rem);
+  font-weight: 500;
+  color: var(--bg-color);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: 280px;
+  min-height: 250px;
+  width: 100%;
+  background-color: #FFF;
+  border-radius: 0.4rem;
+}
+.card > .note_header > h3 {
+  font-weight: 500;
+  font-size: clamp(1.2rem, 5vw, 1.4rem);
+  margin-bottom: 0.5rem;
+}
+.card > .note_header > p {
+  color: var(--text-secondary);
+}
+.card > .note_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-secondary);
+  border-top: 1px solid #cfcfcf;
+  padding-top: 1rem;
+}
+.card > .note_footer > div {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.card > .note_footer > div:hover {
+  -webkit-backdrop-filter: brightness(0.95);
+          backdrop-filter: brightness(0.95);
+}
+
+.modal_container {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  max-width: 100vw;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: 0.2s;
+}
+.modal_container.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal_wrapper {
+  max-width: 400px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: var(--br);
+}
+
+.modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgb(207, 207, 207);
+}
+.modal_header > span {
+  font-size: clamp(1rem, 5vw, 1.2rem);
+}
+.modal_header > div {
+  display: grid;
+  place-items: center;
+  padding: 2px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.modal_header > div:hover {
+  -webkit-backdrop-filter: brightness(0.95);
+          backdrop-filter: brightness(0.95);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+form > .input_group > label {
+  display: block;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  margin-bottom: 0.5rem;
+}
+form > .input_group > input, form > .input_group textarea {
+  padding: 0.8rem 1rem;
+  border: 1px solid #999;
+  border-radius: var(--br);
+  outline: none;
+  width: 100%;
+  font-size: clamp(1rem, 5vw, 1.1rem);
+  transition: 0.2s;
+}
+form > .input_group > input:focus, form > .input_group textarea:focus {
+  border-color: var(--bg-color);
+  box-shadow: 0 0 0.2rem var(--bg-color);
+}
+form > .input_group > input:is(textarea), form > .input_group textarea:is(textarea) {
+  resize: none;
+  height: 150px;
+}
+form > .input_group > input:is(textarea)::-webkit-scrollbar, form > .input_group textarea:is(textarea)::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(219, 219, 219, 0.226);
+}
+form > .input_group > input:is(textarea)::-webkit-scrollbar-thumb, form > .input_group textarea:is(textarea)::-webkit-scrollbar-thumb {
+  background-color: var(--bg-color);
+  border-radius: 16px;
+}
+form > .input_group + .input_group {
+  margin-top: 1rem;
+}
+form button[type=submit] {
+  margin-top: 1rem;
+  padding: 1rem;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  font-size: clamp(1rem, 5vw, 1.1rem);
+  background-color: var(--bg-color);
+  border: none;
+  border-radius: var(--br);
+  filter: brightness(0.95);
+  cursor: pointer;
+  transition: 0.2s;
+}
+form button[type=submit]:hover {
+  filter: brightness(1);
+}
+form button[type=submit]:active {
+  filter: brightness(0.9);
+}/*# sourceMappingURL=style.css.map */
