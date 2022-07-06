@@ -12,15 +12,41 @@
   </head>
   <body>
     <div id="app">
-      <main>
-        <div>
-          <div>
-            <img src="./src/assets/plus.svg" alt="three black dots">
+      <div class="modal_container">
+        <div class="modal_wrapper">
+          <div class="modal_header">
+            <span>Add a new Note</span>
+            <div class="close_modal" >
+              <img src="./src/assets/close.svg" alt="x icon">
+            </div>
+          </div>
+
+          <form name="create_note_form" onkeypress="">
+            <div class="input_group">
+              <label for="title_input">Title</label>
+              <input type="text" name="title_input" id="title_input">
+            </div>
+
+            <div class="input_group">
+              <label for="description_input">Description</label>
+              <textarea name="description_input" id="description_input" cols="30" rows="10"></textarea>
+            </div>
+
+            <button type="submit">Add Note</button>
+          </form>
+        </div>
+      </div>
+      <main class="container">
+        <div class="add_note" tabindex="0">
+          <div class="img_wrapper">
+            <img src="./src/assets/plus.svg" alt="plus symbol">
           </div>
           <span>Add new note</span>
         </div>
+        
       </main>
     </div>
-    <script type="module" src="/src/main.ts"></script>
+
+    <script src="/src/main.ts" defer></script>
   </body>
 </html>
