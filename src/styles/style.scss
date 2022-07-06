@@ -33,6 +33,8 @@ html, body {
 
 .container {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   gap: 1rem;
 }
 
@@ -66,9 +68,9 @@ html, body {
 }
 
 .card {
-  display: flex;
+  @include flex-space-between();
+  
   flex-direction: column;
-  justify-content: space-between;
   padding: 1rem;
 
   @include card-styles();
@@ -86,26 +88,74 @@ html, body {
   }
 
   > .note_footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-space-between(center);
 
     color: var(--text-secondary);
 
     border-top: 1px solid #cfcfcf;
     padding-top: 1rem;
 
-    > div {
+    > .note_actions {
+      position: relative;
       display: grid;
       place-items: center;
+
       width: 30px;
       height: 30px;
-      cursor: pointer;
+
       border-radius: 50%;
+      cursor: pointer;
 
       transition: 0.2s;
+
       &:hover {
         backdrop-filter: brightness(0.95);
+      }
+
+      > img {
+        pointer-events: none;
+      }
+
+      > .menu {
+        position: absolute;
+        background-color: white;
+        width: 100px;
+        height: 90px;
+
+        padding: 0.4rem 0;
+
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
+
+        top: -280%;
+        left: -280%;
+        transform: translate(-50%, -50%) scale(0);
+
+        > span {
+          display: flex;
+          align-items: center;
+
+          padding-inline: 0.5rem;
+          line-height: 40px;
+
+          > img {
+            margin-right: 0.5rem;
+          }
+
+          &:hover {
+            backdrop-filter: brightness(0.96);
+          }
+        }
+      }
+
+      &.active {
+        backdrop-filter: brightness(0.95);
+        transform-origin: bottom right;
+        
+        transition: transform 0.2s;
+        
+        > .menu {
+          transform: scale(1);
+        }
       }
     }
   }
@@ -127,15 +177,16 @@ html, body {
   top: 0;
   left: 0;
 
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
 
-  z-index: 10;
+  z-index: -1;
 
   transition: 0.2s;
 
   &.active {
     opacity: 1;
     pointer-events: auto;
+    z-index: 10;
   }
 }
 
@@ -149,9 +200,7 @@ html, body {
 }
 
 .modal_header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-space-between(center);
 
   padding: 1rem 1.5rem;;
 
@@ -164,7 +213,9 @@ html, body {
   > div {
     display: grid;
     place-items: center;
+
     padding: 2px;
+
     border-radius: 50%;
     cursor: pointer;
 
@@ -181,52 +232,7 @@ form {
   flex-direction: column;
   padding: 1.5rem;
 
-  > .input_group {
-    > label {
-      display: block;
-      width: min-content;
-      font-size: clamp(1rem, 5vw, 1.2rem);
-      margin-bottom: 0.5rem;
-    }
-
-    > input, textarea {
-      padding: 0.8rem 1rem;
-      border: 1px solid #999;
-      border-radius: var(--br);
-      outline: none;
-      width: 100%;
-      font-size: clamp(1rem, 5vw, 1.1rem);
-
-      transition: 0.2s;
-
-      &:focus {
-        border-color: var(--bg-color);
-        box-shadow: 0 0 0.2rem var(--bg-color);
-        // border-width: 2px;
-      }
-
-      &:is(textarea) {
-        resize: none;
-        height: 150px;
-
-        &::-webkit-scrollbar {
-          width: 6px;
-          background-color: rgba(219, 219, 219, 0.226);
-        }
-
-        &::-webkit-scrollbar-thumb {
-          background-color: var(--bg-color);
-          border-radius: 16px;
-        }
-      }
-    }
-
-    & + .input_group {
-      margin-top: 1rem;
-    }
-  }
-
-  button[type="submit"] {
+  button[type="submit"], [type="button"] {
     margin-top: 1rem;
     padding: 1rem;
 
@@ -250,5 +256,56 @@ form {
     &:active {
       filter: brightness(0.9);
     }
+  }
+}
+
+
+.input_group {
+  > label {
+    display: block;
+    width: min-content;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  > input, textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #999;
+    border-radius: var(--br);
+    outline: none;
+    width: 100%;
+    font-size: clamp(1rem, 5vw, 1.1rem);
+
+    transition: 0.2s;
+
+    &:focus {
+      border-color: var(--bg-color);
+      box-shadow: 0 0 0.2rem var(--bg-color);
+    }
+
+    &:is(textarea) {
+      resize: none;
+      height: 150px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+        background-color: rgba(219, 219, 219, 0.226);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--bg-color);
+        border-radius: 16px;
+      }
+    }
+  }
+
+  & + .input_group {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    justify-content: center;
   }
 }
