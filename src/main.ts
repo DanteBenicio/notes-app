@@ -21,6 +21,15 @@ function removeAllCards() {
   })
 }
 
+function getCreatedAt() {
+  const hours = new Date().getHours()
+  const minutes = new Date().getMinutes()
+
+  const noteCreatedAt = `${new Intl.DateTimeFormat('en-US', { dateStyle: "long"}).format(new Date())} - ${hours}:${minutes}`
+
+  return noteCreatedAt
+}
+
 function handleSubmit(e: SubmitEvent | null, updateNote: Notes | null) {
   if (updateNote) {
     const { title_input, description_input } = form!;
@@ -53,7 +62,7 @@ function handleSubmit(e: SubmitEvent | null, updateNote: Notes | null) {
   } else {
     e?.preventDefault();
 
-    const createdAt = new Intl.DateTimeFormat('en-US', { dateStyle: "medium" }).format(new Date())
+    const createdAt = getCreatedAt()
 
     const { title_input, description_input } = form!;
 
@@ -132,15 +141,15 @@ function renderNotes() {
         </div>
         <div class="note_footer">
           <span>${note.createdAt}</span>
-          <div class="note_actions" onclick="showMenu(this)">
+          <div class="note_actions" onclick="showMenu(this)" onkeypress="showMenu(this)" tabindex="0">
             <img src="./src/assets/dots.svg" alt="three black dots">
 
             <div class="menu">
-              <span onclick="editElement(${note.id})">
+              <span tabindex="0" onclick="editElement(${note.id})" onkeypress="editElement(${note.id})">
                 <img src="./src/assets/edit.svg" alt="pen icon">
                 Edit
               </span>
-              <span onclick="deleteElement(${note.id})">
+              <span tabindex="0" onclick="deleteElement(${note.id})" onkeypress="deleteElement(${note.id})">
                 <img src="./src/assets/delete.svg" alt="trash icon">
                 Delete
               </span>
@@ -169,6 +178,10 @@ function showMenu(noteElement: HTMLDivElement) {
 }
 
 addNote?.addEventListener('click', () => {
+  modalContainer?.classList.add('active')
+})
+
+addNote?.addEventListener('keypress', () => {
   modalContainer?.classList.add('active')
 })
 
