@@ -1,6 +1,6 @@
 const modalContainer = document.querySelector('.modal_container'),
-  addNote = document.querySelector('.add_note'),
-  closeModal = document.querySelector('.close_modal'),
+  addNote = document.querySelector('.add_note') as HTMLElement,
+  closeModal = document.querySelector('.close_modal') as HTMLElement,
   container = document.querySelector('.container');
 
 const form = document.forms.namedItem('create_note_form')
