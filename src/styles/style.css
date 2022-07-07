@@ -90,7 +90,8 @@ html, body {
   border-top: 1px solid #cfcfcf;
   padding-top: 1rem;
 }
-.card > .note_footer > .note_actions {
+
+.note_actions {
   position: relative;
   display: grid;
   place-items: center;
@@ -100,44 +101,47 @@ html, body {
   cursor: pointer;
   transition: 0.2s;
 }
-.card > .note_footer > .note_actions:hover {
+.note_actions:hover {
   -webkit-backdrop-filter: brightness(0.95);
           backdrop-filter: brightness(0.95);
 }
-.card > .note_footer > .note_actions > img {
+.note_actions > img {
   pointer-events: none;
 }
-.card > .note_footer > .note_actions > .menu {
+.note_actions > .menu {
   position: absolute;
   background-color: white;
   width: 100px;
   height: 90px;
   padding: 0.4rem 0;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  border-radius: var(--br);
   top: -280%;
   left: -280%;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%);
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: 0.2s;
 }
-.card > .note_footer > .note_actions > .menu > span {
+.note_actions > .menu > span {
   display: flex;
   align-items: center;
   padding-inline: 0.5rem;
   line-height: 40px;
 }
-.card > .note_footer > .note_actions > .menu > span > img {
+.note_actions > .menu > span > img {
   margin-right: 0.5rem;
 }
-.card > .note_footer > .note_actions > .menu > span:hover {
+.note_actions > .menu > span:hover {
   -webkit-backdrop-filter: brightness(0.96);
           backdrop-filter: brightness(0.96);
 }
-.card > .note_footer > .note_actions.active {
+.note_actions.active {
   -webkit-backdrop-filter: brightness(0.95);
           backdrop-filter: brightness(0.95);
-  transform-origin: bottom right;
-  transition: transform 0.2s;
+  transition: 0.2s;
 }
-.card > .note_footer > .note_actions.active > .menu {
+.note_actions.active > .menu {
   transform: scale(1);
 }
 
@@ -258,5 +262,19 @@ form button[type=submit]:active, form [type=button]:active {
 @media screen and (max-width: 768px) {
   .container {
     justify-content: center;
+  }
+
+  .note_actions > .menu {
+    width: 150px !important;
+    height: 120px !important;
+    top: -390%;
+    left: -450%;
+  }
+  .note_actions > .menu > span {
+    padding-inline: 1.5rem;
+    line-height: 50px;
+  }
+  .note_actions > .menu > span > img {
+    margin-right: 1rem;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -95,68 +95,74 @@ html, body {
     border-top: 1px solid #cfcfcf;
     padding-top: 1rem;
 
-    > .note_actions {
-      position: relative;
-      display: grid;
-      place-items: center;
+    
+  }
+}
 
-      width: 30px;
-      height: 30px;
+.note_actions {
+  position: relative;
+  display: grid;
+  place-items: center;
 
-      border-radius: 50%;
-      cursor: pointer;
+  width: 30px;
+  height: 30px;
 
-      transition: 0.2s;
+  border-radius: 50%;
+  cursor: pointer;
 
-      &:hover {
-        backdrop-filter: brightness(0.95);
-      }
+  transition: 0.2s;
+
+  &:hover {
+    backdrop-filter: brightness(0.95);
+  }
+
+  > img {
+    pointer-events: none;
+  }
+
+  > .menu {
+    position: absolute;
+    background-color: white;
+    width: 100px;
+    height: 90px;
+
+    padding: 0.4rem 0;
+
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+    border-radius: var(--br);
+
+    top: -280%;
+    left: -280%;
+    transform: translate(-50%, -50%);
+    transform: scale(0);
+    transform-origin: bottom right;
+
+    transition: 0.2s;
+
+    > span {
+      display: flex;
+      align-items: center;
+
+      padding-inline: 0.5rem;
+      line-height: 40px;
 
       > img {
-        pointer-events: none;
+        margin-right: 0.5rem;
       }
 
-      > .menu {
-        position: absolute;
-        background-color: white;
-        width: 100px;
-        height: 90px;
-
-        padding: 0.4rem 0;
-
-        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
-
-        top: -280%;
-        left: -280%;
-        transform: translate(-50%, -50%) scale(0);
-
-        > span {
-          display: flex;
-          align-items: center;
-
-          padding-inline: 0.5rem;
-          line-height: 40px;
-
-          > img {
-            margin-right: 0.5rem;
-          }
-
-          &:hover {
-            backdrop-filter: brightness(0.96);
-          }
-        }
+      &:hover {
+        backdrop-filter: brightness(0.96);
       }
+    }
+  }
 
-      &.active {
-        backdrop-filter: brightness(0.95);
-        transform-origin: bottom right;
-        
-        transition: transform 0.2s;
-        
-        > .menu {
-          transform: scale(1);
-        }
-      }
+  &.active {
+    backdrop-filter: brightness(0.95);
+
+    transition: 0.2s;
+    
+    > .menu {
+      transform: scale(1);
     }
   }
 }
@@ -308,4 +314,23 @@ form {
   .container {
     justify-content: center;
   }
+
+    .note_actions {
+      > .menu {
+        width: 150px !important;
+        height: 120px !important;
+
+        top: -390%;
+        left: -450%;
+
+        > span {
+          padding-inline: 1.5rem;
+          line-height: 50px;
+
+          > img {
+            margin-right: 1rem;
+          }
+        }
+      }
+    } 
 }
