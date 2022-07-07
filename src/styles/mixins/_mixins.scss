@@ -1,0 +1,18 @@
+@mixin card-styles($border-value: 0.4rem) {
+  max-width: 280px;
+  min-height: 250px;
+  width: 100%;
+
+  background-color: #FFF;
+
+  border-radius: $border-value;
+}
+
+@mixin flex-space-between($align-items-value: false) {
+  display: flex;
+  justify-content: space-between;
+
+  @if $align-items-value {
+    align-items: $align-items-value;
+  }
+}
