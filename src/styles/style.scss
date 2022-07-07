@@ -1,4 +1,4 @@
-@use '../mixins/_mixins.scss' as *;
+@use './mixins/_mixins.scss' as *;
 
 * {
   padding: 0;
@@ -94,8 +94,6 @@ html, body {
 
     border-top: 1px solid #cfcfcf;
     padding-top: 1rem;
-
-    
   }
 }
 
@@ -314,23 +312,21 @@ form {
   .container {
     justify-content: center;
   }
+  
+  .note_actions .menu {
+    width: 150px !important;
+    height: 120px !important;
 
-    .note_actions {
-      > .menu {
-        width: 150px !important;
-        height: 120px !important;
+    top: -390%;
+    left: -450%;
 
-        top: -390%;
-        left: -450%;
+    > span {
+      padding-inline: 1.5rem;
+      line-height: 50px;
 
-        > span {
-          padding-inline: 1.5rem;
-          line-height: 50px;
-
-          > img {
-            margin-right: 1rem;
-          }
-        }
+      > img {
+        margin-right: 1rem;
       }
-    } 
+    }
+  }
 }
