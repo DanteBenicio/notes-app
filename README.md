@@ -2,9 +2,9 @@
   <img src="https://user-images.githubusercontent.com/72478098/177671471-080a29f7-e9b2-4741-a251-f20d38704c12.png">
   <h1>Notes App</h1>
 
-  <span style="display: block;">
+  <p style="display: block;">
     <img alt="version project" src="https://img.shields.io/badge/version-1.0.0-1C1E26?style=for-the-badge&labelColor=blue&color=585373">
-  </span>
+  </p>
 
   <a href="https://github.com/DanteBenicio/notes-app">
     Preview
